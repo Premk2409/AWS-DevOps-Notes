@@ -1,3 +1,27 @@
 #Below concepts
 
-1.
+• Getting Started with AWS 
+• AWS Identity & Access Management (AWS IAM) 
+• Amazon EC2 – Basics Amazon EC2 – Instance Storage 
+• High Availability & Scalability 
+• RDS, Aurora, & ElastiCache 
+• Amazon Route 53 
+• Amazon VPC – Basics 
+• Amazon S3 
+• AWS CLI, SDK, IAM Roles & Policies
+• Amazon S3 – Advanced 
+• Amazon S3 – Security 
+• Amazon CloudFront 
+• Containe rs on AWS 
+• AWS Elastic Beanstalk 
+• AWS CloudFormation 
+• AWS Integration & Messaging 
+• AWS Monitoring, Troubleshooting & Audit 
+• AWS Lambda 
+• Amazon DynamoDB 
+• Amazon API Gateway • AWS CICD 
+• AWS Serverless Application Model (SAM) 
+• AWS Cloud Development Kit (CDK) • Amazon Cognito 
+• Other Serverless 
+• Advanced Identity in AWS
+• AWS Security & Encryption 
