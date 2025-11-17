@@ -1,0 +1,260 @@
+🟧 1. Backend Servers (Java + Spring Boot)
+2 EC2 instances
+OS: RHEL 9
+Purpose: Run backend API in HA (High Availability)
+/opt/backend-app/product-api.jar
+Systemd service
+Connected behind an Application Load Balancer (ALB)
+Why 2 servers?
+So that with ALB you get HA + zero downtime deploy.
+
+🟦 2. Frontend Servers (React/Angular + Nginx)
+2 EC2 instances
+OS: RHEL 9
+Purpose: Host frontend static files using Nginx
+/var/www/frontend
+Nginx reverse proxy (optional)
+Also behind ALB
+Why 2 servers?
+Same reason — availability + load distribution.
+
+🟥 3. Jenkins Server (CI/CD Master)
+1 EC2 instance
+OS: RHEL 9
+Purpose:
+Build backend
+Build frontend
+Deploy to servers
+Triggered by GitHub webhooks
+
+4. Database Server (RDS MySQL)
+1 Managed Service (RDS)
+Instance type: db.t3.micro
+Purpose: Store persistent data for backend API
+
+🟨 5. Bastion / Jump Server
+1 EC2 instance
+OS: RHEL 9
+Purpose:
+Secure SSH access
+Access backend/frontend servers in private subnet
+Jenkins uses SSH via this server (optional)
+
+🟪 6. Logging + Monitoring
+CloudWatch (Managed Service)
+Logs from backend servers
+Health checks
+Dashboards
+Alerts (CPU, Memory, Disk)
+
+🟫 7. Load Balancers (ALB)
+2 ALBs
+ALB 1 → Backend instances
+ALB 2 → Frontend instances
+OR single ALB with two listener rules.
+
+⚙️ TOTAL SERVERS YOU WILL NEED
+Component	Count	OS	Purpose
+Backend EC2	2	RHEL 9	Java API
+Frontend EC2	2	RHEL 9	Nginx
+Jenkins EC2	1	RHEL 9	CI/CD
+Bastion Host	1	RHEL 9	SSH access
+RDS MySQL	1	Managed Service	DB
+ALB	2 OR 1	Managed Service	Traffic distribution
+✔ Total EC2 machines: 6
+✔ Total AWS services: ~10
+
+This is a complete real company DevOps infrastructure.
+
+🚀 COMPLETE DEVOPS TASKS LIST
+
+Completing these will give you full DevOps experience:
+
+🧱 Task 1 — Create VPC Architecture
+
+Create VPC (10.0.0.0/16)
+
+Create 2 public subnets
+
+Create 2 private subnets
+
+Create NAT gateway
+
+Create Internet gateway
+
+🧱 Task 2 — Create Backend Auto-Scaling Group (Even if you don't autoscale)
+
+Use fixed size = 2 servers.
+
+Launch Template:
+
+RHEL 9
+
+Install Java 17
+
+Install CloudWatch agent
+
+Deploy app via UserData
+
+🧱 Task 3 — Create Frontend Auto-Scaling Group
+
+Again, fixed size = 2.
+
+UserData installs:
+
+Nginx
+
+Copies FE build
+
+Restarts Nginx
+
+🧱 Task 4 — Create Application Load Balancer
+
+Targets:
+
+Target group for backend (port 8080)
+
+Target group for frontend (port 80)
+
+Health checks:
+
+/actuator/health
+
+/
+
+🧱 Task 5 — Create Jenkins Server
+
+Install Jenkins on RHEL 9
+
+Configure GitHub webhook
+
+Install plugins
+
+Create Jenkinsfile pipelines
+
+🧱 Task 6 — Backend CI/CD Pipeline
+
+Pipeline:
+
+Clone repo
+
+Build jar
+
+Upload artifact to S3
+
+SSH to backend servers
+
+Stop service
+
+Replace jar
+
+Start service
+
+Health check
+
+🧱 Task 7 — Frontend CI/CD Pipeline
+
+Pipeline:
+
+Clone repo
+
+Build frontend
+
+SCP build to FE servers
+
+Reload Nginx
+
+Health check
+
+🧱 Task 8 — Configure RDS and connect API
+
+Create RDS MySQL
+
+Security groups
+
+Connect from backend
+
+🧱 Task 9 — Logging Setup
+
+Install CloudWatch Agent
+
+Send /var/log/messages
+
+Send Spring Boot logs
+
+Send Nginx logs
+
+🧱 Task 10 — Monitoring and Alerting
+
+CPU > 70%
+
+Memory > 80%
+
+Disk > 75%
+
+Target group health
+
+🧱 Task 11 — Route 53 Domain Setup
+
+Buy domain
+
+DNS records
+
+Bind ALBs to domain
+
+🧱 Task 12 — TLS/SSL
+
+ACM certificate
+
+HTTPS
+
+Redirect HTTP → HTTPS
+
+🧱 Task 13 — Terraform Automation
+
+Automate:
+
+VPC
+
+Subnets
+
+EC2
+
+ALB
+
+Jenkins
+
+Security groups
+
+RDS
+
+🧠 After all these tasks — You become:
+🔥 AWS DevOps Engineer
+🔥 AWS Cloud Developer
+🔥 DevOps + Java Backend Expert
+
+This is literally full enterprise-level experience.
+
+❓ Now choose architecture depth
+
+Do you want:
+
+A) Simple architecture (Front + Back + Jenkins + DB)
+
+= 4 EC2 + RDS + ALB
+
+B) Full enterprise architecture (Front + Back multi-server + Bastion + LB)
+
+= 6 EC2 + RDS + 2 ALB + VPC
+
+Which one do you want to build?
+
+
+💰 TOTAL MONTHLY COST (LOWEST POSSIBLE)
+Component	Qty	Type	Cost
+Backend EC2	2	t3.micro	~$18
+Frontend EC2	2	t2.micro	~$16
+Jenkins EC2	1	t3.small	~$20
+Bastion EC2	1	t2.micro	~$8
+RDS MySQL	1	db.t3.micro	~$18
+ALB (1 only)	1	Standard	~$20
