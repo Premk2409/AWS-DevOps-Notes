@@ -1,0 +1,261 @@
+🐳 TASK A1 — Dockerize Your Spring Boot Backend
+
+Description:
+Convert your backend JAR into a Docker image using a Dockerfile.
+
+Subtasks:
+
+Create Dockerfile
+
+Use multi-stage build (Maven + JRE)
+
+Expose port 8080
+
+Build & run container locally
+
+Expected Output:
+Docker image runs backend at:
+
+http://localhost:8080
+
+
+Skills Learned:
+Dockerfile, containerization, multi-stage builds
+
+🐳 TASK A2 — Push Docker image to Amazon ECR
+
+Description:
+Store your backend image in AWS Elastic Container Registry.
+
+Subtasks:
+
+Create ECR repository
+
+Authenticate Docker to ECR
+
+Tag & push image
+
+Enable scanning
+
+Expected Output:
+Image appears in ECR repo:
+
+product-api:latest
+
+
+Skills:
+ECR, authentication, container registry management
+
+🐳 TASK A3 — Run the Dockerized Backend on EC2
+
+Description:
+Replace JAR deployment with Docker container deployment on an EC2 instance.
+
+Subtasks:
+
+Install Docker on EC2
+
+Pull image from ECR
+
+Run container
+
+Create systemd unit for Docker container
+
+Expose API at port 8080
+
+Expected Output:
+Backend runs via Docker on EC2 without JAR.
+
+🐳 TASK A4 — Configure Nginx Reverse Proxy for Backend
+
+Description:
+Use Nginx on EC2 to forward /api/* to Docker container.
+
+Expected Output:
+
+http://YOUR-EC2/api/products
+
+
+is forwarded to:
+
+localhost:8080
+
+🐳 TASK A5 — Create ECS Cluster (EC2 or Fargate)
+
+Description:
+Move your backend to Amazon ECS for container orchestration.
+
+Subtasks:
+
+Create ECS Cluster
+
+Create Task Definition
+
+Add Container from ECR
+
+Set CPU/Memory
+
+Create Service
+
+Attach to ALB
+
+Expected Output:
+Backend runs in ECS with load balancing.
+
+Skills:
+ECS service, tasks, target groups, load balancing.
+
+🐳 TASK A6 — Blue/Green Deployment using ECS
+
+Description:
+Use ECS minimum healthy percent strategy to rollout deployments.
+
+Expected Output:
+Zero downtime deployment:
+
+Old task stops only after new task is healthy
+
+🐳 TASK A7 — Add Auto Scaling to ECS
+
+Description:
+Scale based on CPU > 70%
+
+Expected Output:
+ECS scales containers from 2 → 4 dynamically.
+
+🟧 PART B — TERRAFORM REAL-TIME TASKS (IaC)
+
+Terraform is mandatory for professional DevOps.
+
+🏗️ TASK B1 — Install Terraform and Set Up Workspace
+
+Description:
+Install Terraform on your Jenkins EC2 or local machine.
+
+Expected Output:
+
+terraform version
+
+🏗️ TASK B2 — Write Terraform Module for VPC
+
+Description:
+Create fully automated VPC:
+
+Components:
+
+1 VPC
+
+2 public subnets
+
+2 private subnets
+
+Internet gateway
+
+NAT gateway
+
+Route tables
+
+Expected Output:
+VPC created with single terraform apply.
+
+🏗️ TASK B3 — Terraform Module for EC2
+
+Description:
+Create backend EC2 using Terraform.
+
+Subtasks:
+
+AMI
+
+Security group
+
+IAM role
+
+User data script (Docker install)
+
+Expected Output:
+EC2 instance launched via Terraform.
+
+🏗️ TASK B4 — Terraform ALB + Target Groups
+
+Description:
+Create:
+
+Application Load Balancer
+
+Listener (80/443)
+
+Target group
+
+Health check
+
+Expected Output:
+ALB DNS gives:
+
+healthy targets = yes
+
+🏗️ TASK B5 — Terraform for RDS MySQL
+
+Description:
+Create database with Terraform.
+
+Expected Output:
+
+db.t3.micro running
+
+🏗️ TASK B6 — Terraform ECS Cluster + Service
+
+Description:
+Fully create ECS cluster via Terraform.
+
+Expected Output:
+ECS service is live and running your container.
+
+🏗️ TASK B7 — Terraform CI/CD using Jenkins
+
+Description:
+Jenkins executes Terraform automatically on merge/push.
+
+Expected Output:
+terraform plan and terraform apply run from Jenkins.
+
+🏗️ TASK B8 — Remote Backend with S3 + DynamoDB
+
+Description:
+Store Terraform states in S3 with DynamoDB lock.
+
+Expected Output:
+
+S3 bucket: terraform-state
+
+DynamoDB table: terraform-locks
+
+🏗️ TASK B9 — Destroy & Re-create infra
+
+To confirm full IaC automation.
+
+Expected Output:
+Run:
+
+terraform destroy
+terraform apply
+
+
+Infrastructure recreated exactly.
+
+🎯 Summary: What These Tasks Give You
+
+✔ Docker
+✔ ECR
+✔ ECS + ALB + Target Groups
+✔ Terraform (VPC, EC2, ALB, RDS, ECS)
+✔ IaC Automation
+✔ Container CI/CD
+✔ Blue/Green Deployments
+✔ Scaling with ECS
+✔ Cost-optimized architecture
+✔ Real DevOps job-level experience
+
+📌 Want a PDF version of these real-time tasks?
+
+Just say “Give PDF”, and I’ll generate a clean PDF with all tasks included.
